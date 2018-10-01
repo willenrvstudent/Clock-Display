@@ -90,22 +90,22 @@ public class ClockDisplay
     {
        if (pm == false && hours.getValue() == 0) {
            displayString = "" + (hours.getValue() + 12) + ":" + 
-                        minutes.getDisplayValue() + pm; 
+                        minutes.getDisplayValue(); 
        }
     
        if (pm == true && hours.getValue() == 0) {
            displayString = hours.getDisplayValue() + ":" + 
-                        minutes.getDisplayValue() + pm;
+                        minutes.getDisplayValue();
        }
        
        else if (pm == true) {
            displayString = "" + (hours.getValue() + 12) + ":" + 
-                        minutes.getDisplayValue() + pm;
+                        minutes.getDisplayValue();
        }
        
        else if (pm == false){
            displayString = hours.getDisplayValue() + ":" + 
-                        minutes.getDisplayValue() + pm;
+                        minutes.getDisplayValue();
        }
     }
 }
