@@ -40,14 +40,7 @@ public class ClockDisplay
     {
         hours = new NumberDisplay(12);
         minutes = new NumberDisplay(60);
-        setTime(hour, minute);
-        
-        if(amOrPm.equals("am")) {
-            pm = false;
-        }
-        else if(amOrPm.equals("pm")){
-            pm = true;
-        }
+        setTime(hour, minute, amOrPm);
 
     }
 
@@ -68,11 +61,20 @@ public class ClockDisplay
      * Set the time of the display to the specified hour and
      * minute.
      */
-    public void setTime(int hour, int minute)
+    public void setTime(int hour, int minute, String amOrPm)
     {
         hours.setValue(hour);
         minutes.setValue(minute);
+        
+         if(amOrPm.equals("am")) {
+            pm = false;
+        }
+        else if(amOrPm.equals("pm")){
+            pm = true;
+        }
+
         updateDisplay();
+        
     }
 
     /**
@@ -88,24 +90,37 @@ public class ClockDisplay
      */
     private void updateDisplay()
     {
-       if (pm == false && hours.getValue() == 0) {
-           displayString = "" + (hours.getValue() + 12) + ":" + 
-                        minutes.getDisplayValue(); 
+       if (pm == false) {
+           
+                if(hours.getValue() == 0) 
+                {
+                    displayString = "" + (hours.getValue() + 12) + ":" + 
+                        minutes.getDisplayValue();
+                }
+                
+                else
+                {
+                    displayString = hours.getDisplayValue() + ":" + 
+                        minutes.getDisplayValue();
+                
+                }
+                
+                
        }
     
-       if (pm == true && hours.getValue() == 0) {
-           displayString = hours.getDisplayValue() + ":" + 
+       if (pm == true){
+           
+           if(hours.getValue() == 0) 
+           {
+               displayString = hours.getDisplayValue() + ":" + 
                         minutes.getDisplayValue();
-       }
-       
-       else if (pm == true) {
-           displayString = "" + (hours.getValue() + 12) + ":" + 
+           }
+           else
+           {
+               displayString = "" + (hours.getValue() + 12) + ":" + 
                         minutes.getDisplayValue();
-       }
-       
-       else if (pm == false){
-           displayString = hours.getDisplayValue() + ":" + 
-                        minutes.getDisplayValue();
+            
+           }
        }
     }
 }
